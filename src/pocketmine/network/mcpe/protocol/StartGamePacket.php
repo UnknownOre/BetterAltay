@@ -378,6 +378,7 @@ class StartGamePacket extends DataPacket{
 		$this->putLLong($this->blockPaletteChecksum);
 		$this->putUUID($this->worldTemplateId);
 		$this->putBool($this->clientSideGeneration);
+		$this->putByte(0);//TODO: find out what this is for
 	}
 
 	public function handle(NetworkSession $session) : bool{
