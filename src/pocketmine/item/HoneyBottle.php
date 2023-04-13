@@ -21,28 +21,37 @@
 
 declare(strict_types=1);
 
-namespace pocketmine\utils;
+namespace pocketmine\item;
 
-use SplPriorityQueue;
+use pocketmine\entity\Effect;
+use pocketmine\entity\Living;
 
-/**
- * @phpstan-template TPriority
- * @phpstan-template TValue
- * @phpstan-extends SplPriorityQueue<TPriority, TValue>
- */
-class ReversePriorityQueue extends SplPriorityQueue{
+class HoneyBottle extends Food{
+	public function __construct(int $meta = 0){
+		parent::__construct(self::HONEY_BOTTLE, $meta, "Honey Bottle");
+	}
 
-	/**
-	 * @param mixed             $priority1
-	 * @param mixed             $priority2
-	 *
-	 * @phpstan-param TPriority $priority1
-	 * @phpstan-param TPriority $priority2
-	 *
-	 * @return int
-	 */
-	public function compare($priority1, $priority2) : int{
-		//TODO: this will crash if non-numeric priorities are used
-		return (int) -($priority1 - $priority2);
+	public function getMaxStackSize() : int{
+		return 16;
+	}
+
+	public function requiresHunger() : bool{
+		return false;
+	}
+
+	public function getResidue() : Item{
+		return ItemFactory::get(Item::GLASS_BOTTLE);
+	}
+
+	public function onConsume(Living $consumer) : void{
+		$consumer->removeEffect(Effect::POISON);
+	}
+
+	public function getFoodRestore() : int{
+		return 6;
+	}
+
+	public function getSaturationRestore() : float{
+		return 1.2;
 	}
 }
