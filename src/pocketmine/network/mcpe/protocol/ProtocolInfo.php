@@ -214,7 +214,6 @@ interface ProtocolInfo{
 	public const EDU_URI_RESOURCE_PACKET = 0xaa;
 	public const CREATE_PHOTO_PACKET = 0xab;
 	public const UPDATE_SUB_CHUNK_BLOCKS_PACKET = 0xac;
-	public const PHOTO_INFO_REQUEST_PACKET = 0xad;
 	public const SUB_CHUNK_PACKET = 0xae;
 	public const SUB_CHUNK_REQUEST_PACKET = 0xaf;
 	public const PLAYER_START_ITEM_COOLDOWN_PACKET = 0xb0;
@@ -230,5 +229,5 @@ interface ProtocolInfo{
 	public const DEATH_INFO_PACKET = 0xbd;
 	public const REQUEST_ABILITY_PACKET = 0xb8;
 	public const UPDATE_CLIENT_INPUT_LOCKS_PACKET = 0xc4;
-
+	public const OPEN_SIGN_PACKET = 0x12f;
 }

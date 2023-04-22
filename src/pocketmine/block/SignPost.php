@@ -26,6 +26,7 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\math\Vector3;
+use pocketmine\network\mcpe\protocol\OpenSignPacket;
 use pocketmine\Player;
 use pocketmine\tile\Sign as TileSign;
 use pocketmine\tile\Tile;
@@ -58,6 +59,12 @@ class SignPost extends Transparent{
 	}
 
 	public function place(Item $item, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector, Player $player = null) : bool{
+		$pk = new OpenSignPacket();
+		$pk->isFrontSide = true;
+		$pk->x = $blockReplace->getX();
+		$pk->y = $blockReplace->getY();
+		$pk->z = $blockReplace->getZ();
+		$player->sendDataPacket($pk);
 		if($face !== Vector3::SIDE_DOWN){
 
 			if($face === Vector3::SIDE_UP){
